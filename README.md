@@ -49,3 +49,6 @@ npm test
 ```
 npm install --save-dev jest
 ```
+
+# Note: 
+I'm currently working on the styling aspect and implementing comprehensive unit testing.
