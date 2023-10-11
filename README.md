@@ -17,7 +17,7 @@ Build mini onboarding for a pregnancy mobile app with 7 screens: Initial, Sign u
 - Language Support: react-native-localization
 
 # Folder Structure
-![fs](https://github.com/Mirza-Hassan/React_Native_pregnancyApp/assets/17096257/a643673d-4896-4167-bb68-32281e8a28ea)
+![fs](https://github.com/Mirza-Hassan/React_Native_pregnancyApp/assets/17096257/a727b797-e730-498c-8ea6-801407d1498c)
 
 
 # Setup Instructions
