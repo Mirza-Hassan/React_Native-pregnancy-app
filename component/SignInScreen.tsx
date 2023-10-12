@@ -28,26 +28,28 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
     >
       <View style={styles.overlay}>
         <Text style={styles.title}>Welcome back!</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="example@gmail.com"
-          onChangeText={(text) => setEmail(text)}
-          placeholderTextColor={colors.LIGHT_GREY}
-          underlineColorAndroid="transparent"
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Enter a Password"
-          secureTextEntry
-          onChangeText={(text) => setPassword(text)}
-          placeholderTextColor={colors.LIGHT_GREY}
-          underlineColorAndroid="transparent"
-        />
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.input}
+            placeholder="example@gmail.com"
+            onChangeText={(text) => setEmail(text)}
+            placeholderTextColor={colors.LIGHT_GREY}
+            underlineColorAndroid="transparent"
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Enter a Password"
+            secureTextEntry
+            onChangeText={(text) => setPassword(text)}
+            placeholderTextColor={colors.LIGHT_GREY}
+            underlineColorAndroid="transparent"
+          />
+        </View>
         <TouchableOpacity
           onPress={() => {}}
           style={styles.forgotPasswordButton}
         >
-          <Text style={styles.forgotPasswordText}>Have you forgotten your password?</Text>
+          <Text style={styles.forgotPasswordText}>Have you forgotten your password?*</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.button, { backgroundColor: isButtonEnabled ? colors.PALE_TEAL : colors.LIGHT_GREY }]}
@@ -65,13 +67,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     resizeMode: 'cover',
-    justifyContent: 'center',
   },
   overlay: {
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    flex: 1,
+    flexGrow: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    paddingBottom: 20,
   },
   title: {
     fontSize: 24,
@@ -79,15 +81,20 @@ const styles = StyleSheet.create({
     color: colors.LIGHT_GREY,
     marginBottom: 20,
   },
-  input: {
+  inputContainer: {
     width: 300,
+    marginTop: 10,
+  },
+  input: {
     height: 40,
     marginTop: 10,
     paddingLeft: 10,
     color: colors.LIGHT_GREY,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.LIGHT_GREY,
   },
   forgotPasswordButton: {
-    marginTop: 20,
+    marginTop: 10,
   },
   forgotPasswordText: {
     color: colors.LIGHT_GREY,
@@ -96,7 +103,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.GREYISH_BROWN,
     padding: 10,
     borderRadius: 5,
-    marginTop: 10,
+    marginTop: 20,
     width: 200,
     alignItems: 'center',
   },
