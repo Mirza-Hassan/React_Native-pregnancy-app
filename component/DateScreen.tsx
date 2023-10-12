@@ -49,26 +49,28 @@ const DateScreen: React.FC<InitialScreenProps> = ({ navigation }) => {
       <TouchableOpacity onPress={showDatePicker}>
         <Text style={styles.dateLabel}>{selectedDate.toDateString()}</Text>
       </TouchableOpacity>
-      <Modal
-        transparent={true}
-        animationType="slide"
-        visible={isDatePickerVisible}
-        onRequestClose={hideDatePicker}
-      >
-        <View style={styles.modalContainer}>
-          <View style={styles.modalContent}>
-            <DateTimePicker
-              value={selectedDate}
-              mode="date"
-              display="default"
-              minimumDate={new Date(2023, 0, 1)}
-              maximumDate={new Date(2030, 11, 31)}
-              onChange={handleDateChange}
-              style={styles.datePicker}
-            />
+      {isDatePickerVisible && (
+        <Modal
+          transparent={true}
+          animationType="slide"
+          visible={isDatePickerVisible}
+          onRequestClose={hideDatePicker}
+        >
+          <View style={styles.modalContainer}>
+            <View style={styles.modalContent}>
+              <DateTimePicker
+                value={selectedDate}
+                mode="date"
+                display="default"
+                minimumDate={new Date(2023, 0, 1)}
+                maximumDate={new Date(2030, 11, 31)}
+                onChange={handleDateChange}
+                style={styles.datePicker}
+              />
+            </View>
           </View>
-        </View>
-      </Modal>
+        </Modal>
+      )}
       <TouchableOpacity
         style={[styles.button, { backgroundColor: isButtonEnabled ? colors.PALE_TEAL : colors.LIGHT_GREY }]}
         onPress={handleContinue}
@@ -103,9 +105,11 @@ const styles = StyleSheet.create({
   modalContainer: {
     flex: 1,
     justifyContent: 'flex-end',
+    alignItems: 'center',
   },
   modalContent: {
     backgroundColor: colors.WHITE,
+    width: '100%',
   },
   datePicker: {
     width: '100%',
