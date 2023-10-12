@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, ImageBackground, StyleSheet } from 'react-native';
-import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome'; // Import FontAwesomeIcon
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import LocalizedStrings from 'react-native-localization';
 import * as colors from './colors';
 import en from '../Languages/en';
@@ -16,16 +16,16 @@ const SuccessScreen: React.FC = () => {
     >
       <View style={styles.overlay}>
       <FontAwesomeIcon name="bell" size={30} color={colors.LIGHT_GREY} />
-        <Text style={styles.title}>Get notifications to boost{"\n"}your motivation</Text>
+        <Text style={styles.title}>{strings.notification_message}</Text>
         <TouchableOpacity>
-          <Text style={styles.skipButtonText}>Skip</Text>
+          <Text style={styles.skipButtonText}>{strings.skip}</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
           onPress={() => {}}
           disabled={false}
         >
-          <Text style={styles.buttonText}>Allow notifications</Text>
+          <Text style={styles.buttonText}>{strings.notification}</Text>
         </TouchableOpacity>
       </View>
     </ImageBackground>
