@@ -9,6 +9,7 @@ Build mini onboarding for a pregnancy mobile app with 7 screens: Initial, Sign u
 - [Pre Requisites](#pre-requisites)
 - [Folder Structure](#folder-structure)
 - [Setup Instructions](#setup-instructions)
+- [ScreenShot](#screenshot)
 
 # Pre Requisites
 
@@ -52,5 +53,9 @@ npm test
 npm install --save-dev jest
 ```
 
+# ScreenShot
+![App](https://github.com/Mirza-Hassan/React_Native_pregnancyApp/assets/17096257/596c849f-31be-4f7d-a017-c6da057ac080)
+
 # Note: 
 I'm currently working on the styling aspect and implementing comprehensive unit testing.
+
