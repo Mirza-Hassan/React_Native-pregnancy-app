@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Text, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
+import { Text, TouchableOpacity, StyleSheet, ImageBackground, Modal, View } from 'react-native';
 import { NavigationProp } from '@react-navigation/native';
+import DateTimePicker from '@react-native-community/datetimepicker';
 import * as colors from './colors';
 
 type InitialScreenProps = {
@@ -8,8 +9,10 @@ type InitialScreenProps = {
 };
 
 const DateScreen: React.FC<InitialScreenProps> = ({ navigation }) => {
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState<any>(new Date());
   const [isButtonEnabled, setIsButtonEnabled] = useState<boolean>(false);
+  const [isDatePickerVisible, setIsDatePickerVisible] = useState<boolean>(false);
+  const [datePickerFlag, setDatePickerFlag] = useState<boolean>(false);
 
   const handleContinue = () => {
     if (isButtonEnabled) {
@@ -19,15 +22,55 @@ const DateScreen: React.FC<InitialScreenProps> = ({ navigation }) => {
     }
   };
 
+  const showDatePicker = () => {
+    setIsDatePickerVisible(true);
+    setDatePickerFlag(true);
+  };
+
+  const hideDatePicker = () => {
+    setIsDatePickerVisible(false);
+  };
+
+  const handleDateChange = (event: any, date: any) => {
+    if (date && datePickerFlag) {
+      setSelectedDate(date);
+      setIsButtonEnabled(true);
+      hideDatePicker();
+      setDatePickerFlag(false);
+    }
+  };
+
   return (
     <ImageBackground
       source={require('../images/due-date-background-image.jpg')}
       style={styles.container}
     >
       <Text style={styles.title}>When is your baby due, Sam?</Text>
-      <TouchableOpacity onPress={() => setIsButtonEnabled(true)}>
-        <Text style={styles.dateText}>{selectedDate.toDateString()}</Text>
+      {/* Button to show the DateTimePicker */}
+      <TouchableOpacity onPress={showDatePicker}>
+        <Text style={styles.dateLabel}>{selectedDate.toDateString()}</Text>
       </TouchableOpacity>
+      {/* Modal for DateTimePicker */}
+      <Modal
+        transparent={true}
+        animationType="slide"
+        visible={isDatePickerVisible}
+        onRequestClose={hideDatePicker}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            <DateTimePicker
+              value={selectedDate}
+              mode="date"
+              display="default"
+              minimumDate={new Date(2023, 0, 1)}
+              maximumDate={new Date(2030, 11, 31)}
+              onChange={handleDateChange}
+              style={styles.datePicker}
+            />
+          </View>
+        </View>
+      </Modal>
       <TouchableOpacity
         style={[styles.button, { backgroundColor: isButtonEnabled ? colors.PALE_TEAL : colors.LIGHT_GREY }]}
         onPress={handleContinue}
@@ -52,12 +95,22 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     color: colors.WARM_GREY,
   },
-  dateText: {
+  dateLabel: {
     fontSize: 20,
     color: colors.LIGHT_BLUE,
     backgroundColor: colors.LIGHT_GREY,
     padding: 5,
     marginBottom: 20,
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+  modalContent: {
+    backgroundColor: colors.WHITE,
+  },
+  datePicker: {
+    width: '100%',
   },
   button: {
     backgroundColor: colors.LIGHT_GREY,
