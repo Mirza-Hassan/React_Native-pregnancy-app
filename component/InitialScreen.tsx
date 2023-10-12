@@ -18,7 +18,7 @@ const InitialScreen: React.FC<InitialScreenProps> = ({ navigation }) => {
         <Image
           source={require('../images/keleya-logo.png')}
           style={styles.logo}
-        />
+          />
         <Text style={styles.logoText}>
           For a fit and relaxed{"\n"}pregnancy
         </Text>
@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
   logo: {
     width: 100,
     height: 100,
+    resizeMode: "stretch"
   },
   logoText: {
     fontSize: 24,
