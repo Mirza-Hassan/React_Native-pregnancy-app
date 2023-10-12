@@ -76,6 +76,8 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: colors.LIGHT_GREY,
     textAlign: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: colors.LIGHT_GREY,
   },
   button: {
     backgroundColor: colors.LIGHT_GREY,
