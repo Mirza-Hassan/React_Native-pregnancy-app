@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { Text, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
+import { Text, TouchableOpacity, StyleSheet, ImageBackground, View } from 'react-native';
+import { Picker } from '@react-native-picker/picker';
+
 import * as colors from './colors';
 import { NavigationProp } from '@react-navigation/native';
 
@@ -19,7 +21,8 @@ const WorkoutScreen: React.FC<WorkoutScreenProps> = ({ navigation }) => {
     }
   };
 
-  const showFrequency = () => {
+  const handleFrequencySelection = (frequency: string) => {
+    setSelectedFrequency(frequency);
     setIsButtonEnabled(true);
   };
 
@@ -29,9 +32,16 @@ const WorkoutScreen: React.FC<WorkoutScreenProps> = ({ navigation }) => {
       style={styles.container}
     >
       <Text style={styles.title}>How many times a week do{"\n"}you want to be active?</Text>
-      <TouchableOpacity style={styles.selectionInput} onPress={showFrequency}>
-        <Text style={styles.selectionText}>{selectedFrequency}</Text>
-      </TouchableOpacity>
+     <View style={styles.selectionInput}>
+        <Picker
+          selectedValue={selectedFrequency}
+          onValueChange={(itemValue: string) => handleFrequencySelection(itemValue)}
+        >
+          <Picker.Item label="3 times a week" value="3 times a week" />
+          <Picker.Item label="4 times a week" value="4 times a week" />
+          <Picker.Item label="5 times a week" value="5 times a week" />
+        </Picker>
+      </View>
       <TouchableOpacity
         style={[styles.button, { backgroundColor: isButtonEnabled ? colors.PALE_TEAL : colors.LIGHT_GREY }]}
         onPress={handleContinue}
@@ -59,13 +69,8 @@ const styles = StyleSheet.create({
   selectionInput: {
     width: 300,
     height: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
     marginBottom: 20,
     backgroundColor: colors.LIGHT_GREY,
-  },
-  selectionText: {
-    color: 'black',
   },
   button: {
     backgroundColor: colors.GREYISH_BROWN,
