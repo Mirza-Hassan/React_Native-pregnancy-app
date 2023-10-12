@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, ImageBackground, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, ImageBackground, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { Checkbox } from 'react-native-paper';
 import * as colors from './colors';
 import { NavigationProp } from '@react-navigation/native';
@@ -29,8 +29,8 @@ const SignupScreen: React.FC<SignupScreenProps> = ({ navigation }) => {
       source={require('../images/authentication-background-image.jpg')}
       style={styles.container}
     >
-      <View style={styles.overlay}>
-        <Text style={styles.title}>Add your details below to set{"\n"}up an account</Text>
+      <ScrollView contentContainerStyle={styles.overlay}>
+        <Text style={styles.title}>Add your details below to set up an account</Text>
         <TextInput
           style={styles.input}
           placeholder="example@gmail.com"
@@ -54,24 +54,22 @@ const SignupScreen: React.FC<SignupScreenProps> = ({ navigation }) => {
           />
           <Text style={styles.checkboxText}>I've read the Privacy Policy</Text>
         </View>
-        <View style={styles.checkboxContainer}>
-          <View style={styles.checkboxRow}>
-            <Checkbox.Android
-              status={isChecked1 ? 'checked' : 'unchecked'}
-              onPress={() => setIsChecked1(!isChecked1)}
-              color={colors.WHITE}
-            />
-            <Text style={styles.checkboxText}>I accept the terms & conditions and Keleya's advice</Text>
-          </View>
+        <View style={styles.checkboxRow}>
+          <Checkbox.Android
+            status={isChecked1 ? 'checked' : 'unchecked'}
+            onPress={() => setIsChecked1(!isChecked1)}
+            color={colors.WHITE}
+          />
+          <Text style={styles.checkboxText}>I accept the terms & conditions and Keleya's advice</Text>
         </View>
         <TouchableOpacity
           style={[styles.button, { backgroundColor: isButtonEnabled ? colors.PALE_TEAL : colors.LIGHT_GREY }]}
           onPress={handleSignup}
           disabled={!isButtonEnabled}
         >
-          <Text style={styles.buttonText}>Create Account</Text>
+          <Text style={styles.buttonText}>Create account</Text>
         </TouchableOpacity>
-      </View>
+      </ScrollView>
     </ImageBackground>
   );
 };
@@ -84,9 +82,10 @@ const styles = StyleSheet.create({
   },
   overlay: {
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    flex: 1,
+    flexGrow: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    paddingBottom: 20,
   },
   title: {
     fontSize: 24,
@@ -101,13 +100,11 @@ const styles = StyleSheet.create({
     marginTop: 10,
     paddingLeft: 10,
     color: colors.LIGHT_GREY,
-  },
-  checkboxContainer: {
-    marginTop: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.LIGHT_GREY,
   },
   checkboxRow: {
     flexDirection: 'row',
-    alignItems: 'center',
     marginBottom: 10,
   },
   checkboxText: {
