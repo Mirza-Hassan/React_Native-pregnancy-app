@@ -46,11 +46,9 @@ const DateScreen: React.FC<InitialScreenProps> = ({ navigation }) => {
       style={styles.container}
     >
       <Text style={styles.title}>When is your baby due, Sam?</Text>
-      {/* Button to show the DateTimePicker */}
       <TouchableOpacity onPress={showDatePicker}>
         <Text style={styles.dateLabel}>{selectedDate.toDateString()}</Text>
       </TouchableOpacity>
-      {/* Modal for DateTimePicker */}
       <Modal
         transparent={true}
         animationType="slide"
